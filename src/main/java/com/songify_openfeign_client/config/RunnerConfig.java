@@ -22,6 +22,9 @@ public class RunnerConfig {
             Integer idForPutNewSong = 3;
             Song newSong2 = new Song("newSong2", "newArtist2");
             songifyClient.putSongById(idForPutNewSong, newSong2);
+            Integer idForPatchSong = 2;
+            Song patch = new Song(null, "patchedArtist");
+            songifyClient.patchSongById(idForPatchSong, patch);
         };
     }
 }

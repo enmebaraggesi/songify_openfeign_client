@@ -30,4 +30,8 @@ public class SongifyMapper {
     public Song mapSongUpdateReceivedDtoToSong(SongUpdateReceivedDto receivedDto) {
         return new Song(receivedDto.songName(), receivedDto.artist());
     }
+    
+    public String mapSongPatchedReceivedDtoToString(SongPatchedReceivedDto receivedDto) {
+        return receivedDto.message();
+    }
 }

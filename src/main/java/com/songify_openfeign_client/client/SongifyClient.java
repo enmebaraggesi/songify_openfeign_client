@@ -31,4 +31,8 @@ public class SongifyClient {
     public void putSongById(Integer id, Song newSong) {
         songifyService.putSongById(id, newSong);
     }
+    
+    public void patchSongById(Integer id, Song patch) {
+        songifyService.patchSongById(id, patch);
+    }
 }

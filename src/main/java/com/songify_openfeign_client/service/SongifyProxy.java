@@ -23,4 +23,7 @@ public interface SongifyProxy {
     
     @PutMapping("{id}")
     SongUpdateReceivedDto putSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
+    
+    @PatchMapping("{id}")
+    SongPatchedReceivedDto patchSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
 }

@@ -54,10 +54,18 @@ public class SongifyService {
     
     public void putSongById(Integer id, Song newSong) {
         log.info("Updating song with id {}...", id);
-        SongUpdatedDto postedDto = songifyMapper.mapSongToSongUpdatedDto(newSong);
-        SongUpdateReceivedDto receivedDto = songifyProxy.putSongById(id, postedDto);
+        SongUpdatedDto putDto = songifyMapper.mapSongToSongUpdatedDto(newSong);
+        SongUpdateReceivedDto receivedDto = songifyProxy.putSongById(id, putDto);
         Song receivedSong = songifyMapper.mapSongUpdateReceivedDtoToSong(receivedDto);
         log.info("Song updated: {}", receivedSong);
+    }
+    
+    public void patchSongById(Integer id, Song patch) {
+        log.info("Patching song with id {}...", id);
+        SongUpdatedDto postedDto = songifyMapper.mapSongToSongUpdatedDto(patch);
+        SongPatchedReceivedDto receivedDto = songifyProxy.patchSongById(id, postedDto);
+        String message = songifyMapper.mapSongPatchedReceivedDtoToString(receivedDto);
+        log.info("Song patched: {}", message);
     }
     
     private static void logSongMap(Map<Integer, Song> songMap) {
