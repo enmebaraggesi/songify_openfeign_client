@@ -3,8 +3,6 @@ package com.songify_openfeign_client.client;
 import com.songify_openfeign_client.service.SongifyService;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 @Component
 public class SongifyClient {
     
@@ -14,11 +12,15 @@ public class SongifyClient {
         this.songifyService = songifyService;
     }
     
-    public Map<Integer, Song> getAllSongs() {
-        return songifyService.getAllSongs();
+    public void getAllSongs() {
+        songifyService.getAllSongs();
     }
     
-    public Map<Integer, Song> getAllSongsLimited(Integer limit) {
-        return songifyService.getAllSongsLimited(limit);
+    public void getAllSongsLimited(Integer limit) {
+        songifyService.getAllSongsLimited(limit);
+    }
+    
+    public void postNewSong(Song newSong) {
+        songifyService.postNewSong(newSong);
     }
 }

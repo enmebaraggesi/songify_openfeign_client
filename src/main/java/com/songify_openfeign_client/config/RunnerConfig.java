@@ -7,8 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Map;
-
 @Log4j2
 @Configuration
 public class RunnerConfig {
@@ -16,18 +14,10 @@ public class RunnerConfig {
     @Bean
     CommandLineRunner init(SongifyClient songifyClient) {
         return args -> {
-            Map<Integer, Song> allSongs = songifyClient.getAllSongs();
-            allSongs.forEach(
-                    RunnerConfig::getInformed
-            );
-            Map<Integer, Song> allSongsLimited = songifyClient.getAllSongsLimited(3);
-            allSongsLimited.forEach(
-                    RunnerConfig::getInformed
-            );
+            songifyClient.getAllSongs();
+            songifyClient.getAllSongsLimited(3);
+            Song newSong = new Song("newSong", "newArtist");
+            songifyClient.postNewSong(newSong);
         };
-    }
-    
-    private static void getInformed(Integer id, Song song) {
-        log.info("ID {}: '{}' of '{}'", id, song.name(), song.artist());
     }
 }
