@@ -1,13 +1,13 @@
 package com.songify_openfeign_client.service;
 
 import com.songify_openfeign_client.received.*;
-import com.songify_openfeign_client.sent.SongPostedDto;
-import com.songify_openfeign_client.sent.SongUpdatedDto;
+import com.songify_openfeign_client.requested.SongToPostRequestDto;
+import com.songify_openfeign_client.requested.SongToUpdatedRequestDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "songify-client", url = "http://localhost:8080/songs")
-public interface SongifyProxy {
+@FeignClient(value = "songify-proxy", url = "${com.songify.url}")
+interface SongifyProxy {
     
     @GetMapping
     GetAllSongsReceivedDto getAllSongs();
@@ -16,17 +16,17 @@ public interface SongifyProxy {
     GetAllSongsReceivedDto getAllSongsLimited(@RequestParam Integer limit);
     
     @GetMapping("{id}")
-    SongReceivedDto getSongById(@PathVariable Integer id, @RequestHeader String requestId);
+    GetSongReceivedDto getSongById(@PathVariable Integer id, @RequestHeader String requestId);
     
     @PostMapping
-    SongReceivedDto postNewSong(@RequestBody SongPostedDto postedDto);
+    GetSongReceivedDto postNewSong(@RequestBody SongToPostRequestDto postedDto);
     
     @PutMapping("{id}")
-    SongUpdateReceivedDto putSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
+    UpdateSongReceivedDto putSongById(@PathVariable Integer id, @RequestBody SongToUpdatedRequestDto postedDto);
     
     @PatchMapping("{id}")
-    SongPatchedReceivedDto patchSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
+    PatchSongReceivedDto patchSongById(@PathVariable Integer id, @RequestBody SongToUpdatedRequestDto postedDto);
     
     @DeleteMapping("{id}")
-    SongDeletedReceivedDto deleteSongById(@PathVariable Integer id);
+    DeleteSongReceivedDto deleteSongById(@PathVariable Integer id);
 }
