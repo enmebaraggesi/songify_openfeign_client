@@ -25,6 +25,8 @@ public class RunnerConfig {
             Integer idForPatchSong = 2;
             Song patch = new Song(null, "patchedArtist");
             songifyClient.patchSongById(idForPatchSong, patch);
+            Integer idForDeleteSong = 1;
+            songifyClient.deleteSongById(idForDeleteSong);
         };
     }
 }

@@ -26,4 +26,7 @@ public interface SongifyProxy {
     
     @PatchMapping("{id}")
     SongPatchedReceivedDto patchSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
+    
+    @DeleteMapping("{id}")
+    SongDeletedReceivedDto deleteSongById(@PathVariable Integer id);
 }

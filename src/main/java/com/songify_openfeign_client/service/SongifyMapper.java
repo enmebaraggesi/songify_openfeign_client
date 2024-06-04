@@ -4,6 +4,7 @@ import com.songify_openfeign_client.client.Song;
 import com.songify_openfeign_client.received.*;
 import com.songify_openfeign_client.sent.SongPostedDto;
 import com.songify_openfeign_client.sent.SongUpdatedDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -33,5 +34,9 @@ public class SongifyMapper {
     
     public String mapSongPatchedReceivedDtoToString(SongPatchedReceivedDto receivedDto) {
         return receivedDto.message();
+    }
+    
+    public Map<String, HttpStatus> mapSongDeletedReceivedDtoToAnswerMap(SongDeletedReceivedDto receivedDto) {
+        return Map.of(receivedDto.message(), receivedDto.status());
     }
 }

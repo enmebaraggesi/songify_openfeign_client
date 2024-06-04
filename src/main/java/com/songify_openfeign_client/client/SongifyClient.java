@@ -35,4 +35,8 @@ public class SongifyClient {
     public void patchSongById(Integer id, Song patch) {
         songifyService.patchSongById(id, patch);
     }
+    
+    public void deleteSongById(Integer id) {
+        songifyService.deleteSongById(id);
+    }
 }
