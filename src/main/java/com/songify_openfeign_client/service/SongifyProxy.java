@@ -1,8 +1,8 @@
 package com.songify_openfeign_client.service;
 
-import com.songify_openfeign_client.received.GetAllSongsReceivedDto;
-import com.songify_openfeign_client.received.SongReceivedDto;
+import com.songify_openfeign_client.received.*;
 import com.songify_openfeign_client.sent.SongPostedDto;
+import com.songify_openfeign_client.sent.SongUpdatedDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,4 +20,7 @@ public interface SongifyProxy {
     
     @PostMapping
     SongReceivedDto postNewSong(@RequestBody SongPostedDto postedDto);
+    
+    @PutMapping("{id}")
+    SongUpdateReceivedDto putSongById(@PathVariable Integer id, @RequestBody SongUpdatedDto postedDto);
 }

@@ -1,9 +1,9 @@
 package com.songify_openfeign_client.service;
 
 import com.songify_openfeign_client.client.Song;
-import com.songify_openfeign_client.received.GetAllSongsReceivedDto;
-import com.songify_openfeign_client.received.SongReceivedDto;
+import com.songify_openfeign_client.received.*;
 import com.songify_openfeign_client.sent.SongPostedDto;
+import com.songify_openfeign_client.sent.SongUpdatedDto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -52,11 +52,17 @@ public class SongifyService {
         log.info("New song posted: {}", receivedSong);
     }
     
+    public void putSongById(Integer id, Song newSong) {
+        log.info("Updating song with id {}...", id);
+        SongUpdatedDto postedDto = songifyMapper.mapSongToSongUpdatedDto(newSong);
+        SongUpdateReceivedDto receivedDto = songifyProxy.putSongById(id, postedDto);
+        Song receivedSong = songifyMapper.mapSongUpdateReceivedDtoToSong(receivedDto);
+        log.info("Song updated: {}", receivedSong);
+    }
+    
     private static void logSongMap(Map<Integer, Song> songMap) {
         songMap.forEach(
                 (id, song) -> log.info("ID {}: '{}' of '{}'", id, song.name(), song.artist())
         );
     }
-    
-    
 }

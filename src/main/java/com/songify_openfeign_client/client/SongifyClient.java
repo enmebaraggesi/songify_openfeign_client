@@ -27,4 +27,8 @@ public class SongifyClient {
     public void postNewSong(Song newSong) {
         songifyService.postNewSong(newSong);
     }
+    
+    public void putSongById(Integer id, Song newSong) {
+        songifyService.putSongById(id, newSong);
+    }
 }
