@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Random;
 
 @Log4j2
 @Service
@@ -35,6 +36,14 @@ public class SongifyService {
         logSongMap(songMap);
     }
     
+    public void getSongById(Integer id) {
+        log.info("Getting song by id {}...", id);
+        String requestId = String.valueOf(new Random().nextInt(0, 999));
+        SongReceivedDto receivedDto = songifyProxy.getSongById(id, requestId);
+        Song receivedSong = songifyMapper.mapSongReceivedDtoToSong(receivedDto);
+        log.info("Received song: {}", receivedSong);
+    }
+    
     public void postNewSong(Song newSong) {
         log.info("Posting new song...");
         SongPostedDto postedDto = songifyMapper.mapSongToSongPostedDto(newSong);
@@ -48,4 +57,6 @@ public class SongifyService {
                 (id, song) -> log.info("ID {}: '{}' of '{}'", id, song.name(), song.artist())
         );
     }
+    
+    
 }

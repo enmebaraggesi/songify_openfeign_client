@@ -15,6 +15,9 @@ public interface SongifyProxy {
     @GetMapping
     GetAllSongsReceivedDto getAllSongsLimited(@RequestParam Integer limit);
     
+    @GetMapping("{id}")
+    SongReceivedDto getSongById(@PathVariable Integer id, @RequestHeader String requestId);
+    
     @PostMapping
     SongReceivedDto postNewSong(@RequestBody SongPostedDto postedDto);
 }

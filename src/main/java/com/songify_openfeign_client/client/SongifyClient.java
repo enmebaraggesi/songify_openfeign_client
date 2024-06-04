@@ -20,6 +20,10 @@ public class SongifyClient {
         songifyService.getAllSongsLimited(limit);
     }
     
+    public void getSongById(Integer id) {
+        songifyService.getSongById(id);
+    }
+    
     public void postNewSong(Song newSong) {
         songifyService.postNewSong(newSong);
     }

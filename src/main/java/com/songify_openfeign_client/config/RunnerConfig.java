@@ -16,6 +16,7 @@ public class RunnerConfig {
         return args -> {
             songifyClient.getAllSongs();
             songifyClient.getAllSongsLimited(3);
+            songifyClient.getSongById(2);
             Song newSong = new Song("newSong", "newArtist");
             songifyClient.postNewSong(newSong);
         };
