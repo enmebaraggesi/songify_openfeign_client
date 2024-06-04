@@ -20,6 +20,10 @@ public class RunnerConfig {
             allSongs.forEach(
                     RunnerConfig::getInformed
             );
+            Map<Integer, Song> allSongsLimited = songifyClient.getAllSongsLimited(3);
+            allSongsLimited.forEach(
+                    RunnerConfig::getInformed
+            );
         };
     }
     

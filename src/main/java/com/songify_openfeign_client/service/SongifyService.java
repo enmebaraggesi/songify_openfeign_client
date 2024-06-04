@@ -21,4 +21,9 @@ public class SongifyService {
         GetAllSongsReceivedDto receivedDto = songifyProxy.getAllSongs();
         return songifyMapper.mapGetAllSongsReceivedDtoToSongsMap(receivedDto);
     }
+    
+    public Map<Integer, Song> getAllSongsLimited(Integer limit) {
+        GetAllSongsReceivedDto receivedDto = songifyProxy.getAllSongsLimited(limit);
+        return songifyMapper.mapGetAllSongsReceivedDtoToSongsMap(receivedDto);
+    }
 }
